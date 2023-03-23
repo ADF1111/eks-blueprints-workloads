@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- toYaml .Values.labels | nindent 4 }}  
 spec:
-  instanceProfile: {{ .Values.spec.clusterName }}-managed-ondemand
+  instanceProfile: {{ .Values.spec.clusterName }}-spot
   subnetSelector:
     kubernetes.io/cluster/{{ .Values.spec.clusterName }}: '*'
     kubernetes.io/role/internal-elb: '1' # to select only private subnets
@@ -44,7 +44,7 @@ spec:
       values: ['amd64']
     - key: karpenter.sh/capacity-type
       operator: In
-      values: ['on-demand']
+      values: ['spot']
     - key: kubernetes.io/os
       operator: In
       values:
