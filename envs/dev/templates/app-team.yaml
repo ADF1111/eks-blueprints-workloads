@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: team-burnham
+  name: app-team
   namespace: argocd
   labels:
-    {{- toYaml .Values.labels | nindent 4 }}
+    {{- toYaml .Values.labels | nindent 4 }}  
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   destination:
-    namespace: team-burnham
+    namespace: app-team
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
-    path: teams/team-burnham/dev
+    path: teams/app-team/dev
     helm:
       values: |
         {{- toYaml .Values | nindent 8 }}

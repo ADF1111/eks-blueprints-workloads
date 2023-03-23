@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: team-riker
+  namespace: app-team
   name: deployment-2048
 spec:
   selector:
